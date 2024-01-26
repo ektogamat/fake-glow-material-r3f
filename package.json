@@ -1,0 +1,38 @@
+{
+  "name": "using-hologram-material",
+  "version": "1.0.0",
+  "description": "This component, created by Anderson Mancini, represents a holographic material in a Three.js environment. \n * It provides a visually stunning holographic effect with customizable properties such as fresnel amount, opacity, \n * scanline size, hologram brightness, signal speed, and hologram color. The component is designed to be used \n * within a React Three Fiber scene for immersive 3D graphics.",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@react-three/drei": "9.90.0",
+    "@react-three/fiber": "8.15.12",
+    "@types/three": "0.159.0",
+    "leva": "0.9.34",
+    "maath": "0.5.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "three": "0.159.0",
+    "vercel": "^33.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "vite build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "dev": "vite",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "deploy": "vercel --prod"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
