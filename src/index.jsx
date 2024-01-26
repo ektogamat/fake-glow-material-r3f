@@ -13,7 +13,7 @@ function Overlay() {
         <div className='buttons'>
           <button
             onClick={() => {
-              window.open('https://github.com/ektogamat/threejs-holographic-material', 'tab')
+              window.open('https://github.com/ektogamat/fake-glow-material-r3f', 'tab')
             }}
           >
             DOWNLOAD FOR REACT THREE FIBER

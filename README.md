@@ -1,4 +1,4 @@
-# Fake Glow Material Material for React Three Fiber
+# Fake Glow Material for React Three Fiber
 
 A simple to use glow material for react three fiber that can create glow effect from a mesh.
 
@@ -15,8 +15,6 @@ Code Sandbox example: <a href="https://codesandbox.io/p/devbox/crazy-elbakyan-r8
 This material enables the utilization of a 3D mesh as a GLOW effect through GLSL Shaders, all without the need for any post-processing effects.
 
 Unlike traditional approaches using post-processing, my new React Three Fiber material employs GLSL Shaders directly for creating glow effects on 3D meshes. This method avoids the usual performance hit associated with post-processing, such as the bloom effect, making it a more efficient solution for integrating glow effects in 3D scenes.
-
-This innovation opens up new possibilities for creating captivating visual experiences within the React Three Fiber framework, pushing the boundaries of 3D rendering without the typical reliance on additional processing.
 
 # HOW TO USE?
 
@@ -42,15 +40,21 @@ import FakeGlowMaterial from './FakeGlowMaterial'
 
 ```
 
-Done. This effect is mesh based, meaning that you need to provide a mesh for this to work properly
+Done. That's all that you need to use this component.
+
+### This effect is mesh based, meaning that you need to provide a mesh for this to work properly
 
 <p align="center">
     <img src="/public/example1.jpg" width="100%"/>
 </p>
 
-That's all that you need to use this component. Of course you can customize it as shown bellow.
+When you give it a mesh, remember that it must be smooth enough so glsl can calculate normals and create the effect. For example, for sharp meshes like a cube, you can use a sphere to simulate the glow, instead of a copy of the cube.
 
-# Properties
+| ❌ Bad: Cube mesh for glow | ✅ Good: Sphere mesh for glow |
+| :------------------------: | :---------------------------: |
+| ![](/public/example2.jpg)  |   ![](/public/example3.png)   |
+
+# Customization properties
 
 You can use VSCODE Intellisense feature to get all the explanation for each property. Just press CRTL + SPACE BAR.
 
