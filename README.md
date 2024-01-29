@@ -22,6 +22,8 @@ Unlike traditional approaches using post-processing, my new React Three Fiber ma
 
 Create a new file with the contents of [this gist](https://gist.github.com/ektogamat/af6cae96681679dde817e1f313278c8b) on your project.
 
+Using TypeScript? [Use this one instead](https://gist.github.com/ektogamat/e00e4926ff9076facce49b7c6ab0fa22) - by (https://github.com/nirtamir2)
+
 ### 2: Import the material
 
 ```
