@@ -13,7 +13,10 @@ function Overlay() {
         <div className='buttons'>
           <button
             onClick={() => {
-              window.open('https://github.com/ektogamat/fake-glow-material-r3f', 'tab')
+              window.open(
+                'https://github.com/ektogamat/fake-glow-material-r3f',
+                'tab'
+              )
             }}
           >
             DOWNLOAD FOR REACT THREE FIBER
@@ -23,7 +26,8 @@ function Overlay() {
         </div>
 
         <h2>
-          New Three.js Material by <a href='https://andersonmancini.dev'>Anderson Mancini</a>
+          New Three.js Material by{' '}
+          <a href='https://andersonmancini.dev'>Anderson Mancini</a>
         </h2>
       </div>
     </div>

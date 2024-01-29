@@ -64,13 +64,15 @@ You can use VSCODE Intellisense feature to get all the explanation for each prop
     <img src="/public/intellisense.jpg" width="100%"/>
 </p>
 
-| Name               | Type   | Default           | Description                                                                                                                                               |
-| ------------------ | ------ | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| falloff            | Number | 0.1               | Controls the value of the Falloff effect. Ranges from 0.0 to 1.0.                                                                                         |
-| glowInternalRadius | Number | 6.0               | Controls the internal glow radius. Ranges from -1.0 to 1.0. Set a darker color to get the fresnel effect only.                                            |
-| glowColor          | String | "#00ff00"         | Specifies the color of the hologram. Use hexadecimal format.                                                                                              |
-| glowSharpness      | Number | 1.0               | Specifies the edges sharpness. Defaults to 1.0.                                                                                                           |
-| side               | String | "THREE.FrontSide" | Specifies side for the material, as THREE.DoubleSide. Options are "THREE.FrontSide", "THREE.BackSide", "THREE.DoubleSide". Defaults to "THREE.FrontSide". |
+| Name               | Type    | Default           | Description                                                                                                                                                            |
+| ------------------ | ------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| falloff            | Number  | 0.1               | Controls the value of the Falloff effect. Ranges from 0.0 to 1.0.                                                                                                      |
+| glowInternalRadius | Number  | 6.0               | Controls the internal glow radius. Ranges from -1.0 to 1.0. Set a darker color to get the fresnel effect only.                                                         |
+| glowColor          | String  | "#00ff00"         | Specifies the color of the hologram. Use hexadecimal format.                                                                                                           |
+| glowSharpness      | Number  | 1.0               | Specifies the edges sharpness. Defaults to 1.0.                                                                                                                        |
+| side               | String  | "THREE.FrontSide" | Specifies side for the material, as THREE.DoubleSide. Options are "THREE.FrontSide", "THREE.BackSide", "THREE.DoubleSide". Defaults to "THREE.FrontSide".              |
+| opacity            | Number  | 1.0               | Controls the opacity for the effect. Defaults to 1.0                                                                                                                   |
+| depthTest          | Boolean | false             | Enable or disable depthTest, controling if the mesh should not be visible when hided by other meshes. In case true, setting the side to FrontSide only is recommended. |
 
 Here is an example of how you can pass these props. If you pass any of those props, the default values will be overwritten.
 
@@ -81,6 +83,8 @@ Here is an example of how you can pass these props. If you pass any of those pro
     glowColor={"#ff0000"}
     glowSharpness={2.3}
     side={"THREE.FrontSide"}
+    opacity={1.0}
+    depthTest={false}
 />
 ```
 
@@ -93,6 +97,8 @@ const glowControls = useControls({
     glowColor: { value: "#51a4de" },
     glowSharpness: { value: 1.0, min: 0.0, max: 2.0 },
     side: { value: "THREE.FrontSide", options: ["THREE.FrontSide", "THREE.BackSide", "THREE.DoubleSide"] },
+    opacity: { value: 1.0, min: 0.0, max: 1.0 },
+    depthTest: false,
 });
 ```
 

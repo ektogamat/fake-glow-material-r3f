@@ -11,13 +11,23 @@ import { Color, DoubleSide, AdditiveBlending } from 'three'
  * @property {String} [glowColor='#00ff00'] - Specifies the color of the hologram. Use hexadecimal format.
  * @property {Number} [glowSharpness=1.0] - Specifies the edges sharpness. Defaults to 1.0.
  * @property {String} [side='THREE.FrontSide'] - Specifies side for the material, as THREE.DoubleSide. Options are "THREE.FrontSide", "THREE.BackSide", "THREE.DoubleSide". Defaults to "THREE.FrontSide".
+ * @property {Boolean} [depthTest=false] - Enable or disable depthTest. Defaults to false.
+ * @property {Number} [opacity=1.0] - Controls the opacity. Defaults to 1.0,
  */
 
 /**
  * FakeGlow material component by Anderson Mancini - Feb 2024.
  * @param {FakeGlowMaterialProps} props - Props for the FakeGlowMaterial component.
  */
-const FakeGlowMaterial = ({ falloff = 0.1, glowInternalRadius = 6.0, glowColor = '#00ff00', glowSharpness = 1.0, side = 'THREE.FrontSide' }) => {
+const FakeGlowMaterial = ({
+  falloff = 0.1,
+  glowInternalRadius = 6.0,
+  glowColor = '#00ff00',
+  glowSharpness = 1.0,
+  side = 'THREE.FrontSide',
+  depthTest = false,
+  opacity = 1.0,
+}) => {
   const FakeGlowMaterial = useMemo(() => {
     return shaderMaterial(
       {
@@ -25,6 +35,7 @@ const FakeGlowMaterial = ({ falloff = 0.1, glowInternalRadius = 6.0, glowColor =
         glowInternalRadius: glowInternalRadius,
         glowColor: new Color(glowColor),
         glowSharpness: glowSharpness,
+        opacity: opacity,
       },
       /*GLSL */
       `
@@ -45,6 +56,7 @@ const FakeGlowMaterial = ({ falloff = 0.1, glowInternalRadius = 6.0, glowColor =
       uniform float falloffAmount;
       uniform float glowSharpness;
       uniform float glowInternalRadius;
+      uniform float opacity;
 
       varying vec3 vPosition;
       varying vec3 vNormal;
@@ -62,17 +74,25 @@ const FakeGlowMaterial = ({ falloff = 0.1, glowInternalRadius = 6.0, glowColor =
         float fakeGlow = fresnel;
         fakeGlow += fresnel * glowSharpness;
         fakeGlow *= falloff;
-        gl_FragColor = vec4(clamp(glowColor * fresnel, 0., 1.0), clamp(fakeGlow, 0., 1.0));
+        gl_FragColor = vec4(clamp(glowColor * fresnel, 0., 1.0), clamp(fakeGlow, 0., opacity));
 
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
       }`
     )
-  }, [falloff, glowInternalRadius, glowColor, glowSharpness])
+  }, [falloff, glowInternalRadius, glowColor, glowSharpness, opacity])
 
   extend({ FakeGlowMaterial })
 
-  return <fakeGlowMaterial key={FakeGlowMaterial.key} side={side} transparent={true} blending={AdditiveBlending} depthTest={false} />
+  return (
+    <fakeGlowMaterial
+      key={FakeGlowMaterial.key}
+      side={side}
+      transparent={true}
+      blending={AdditiveBlending}
+      depthTest={depthTest}
+    />
+  )
 }
 
 FakeGlowMaterial.propTypes = {
@@ -80,7 +100,11 @@ FakeGlowMaterial.propTypes = {
   glowInternalRadius: PropTypes.number,
   glowColor: PropTypes.string,
   glowSharpness: PropTypes.number,
-  side: PropTypes.oneOf(['THREE.FrontSide', 'THREE.BackSide', 'THREE.DoubleSide']), // Adjust the PropTypes as per your requirements
+  side: PropTypes.oneOf([
+    'THREE.FrontSide',
+    'THREE.BackSide',
+    'THREE.DoubleSide',
+  ]),
 }
 
 export default FakeGlowMaterial
