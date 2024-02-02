@@ -22,7 +22,16 @@ function Overlay() {
             DOWNLOAD FOR REACT THREE FIBER
           </button>
 
-          <button disabled>DOWNLOAD FOR VANILLA THREE.JS</button>
+          <button
+            onClick={() => {
+              window.open(
+                'https://github.com/ektogamat/fake-glow-material-threejs',
+                'tab'
+              )
+            }}
+          >
+            DOWNLOAD FOR VANILLA THREE.JS
+          </button>
         </div>
 
         <h2>
